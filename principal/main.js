@@ -352,6 +352,7 @@ document.addEventListener('DOMContentLoaded',() => {
   false
 );
 
+
 function mostrarServicios(servicio) {
   const serviciosDivContainer = document.createElement('DIV');
   serviciosDivContainer.innerHTML = `
@@ -393,12 +394,6 @@ function agregar(e) {
   mostrarCarrito(true, carrito);
   calcularTotal();
 }
-// if(Notification.permission == 'granted') {
-//   new Notification('Notificación', {
-//       icon: '../img/instagram.png',
-//       body: 'Avanzando con la 3ra Pre-entrega JS'
-//   })
-// }
 
 
 //funcion para mostrar el carrito con los servicios seleccionados
@@ -413,6 +408,7 @@ function mostrarCarrito(refresh = false, carritoActualizado) {
       carritoList.removeChild(elementAEliminar);
       elementAEliminar = carritoList.lastChild;
     }
+    
     carritoContainerDiv.classList.remove('carrito-container-active');
   }
 
@@ -429,6 +425,7 @@ function mostrarCarrito(refresh = false, carritoActualizado) {
     }" id="btn-eliminar${servicio.id}">Eliminar</button>
     
     `;
+    
 
     carritoContainerDiv.classList.add('carrito-container-active');
     carritoList.appendChild(carritoItemList);
@@ -436,13 +433,18 @@ function mostrarCarrito(refresh = false, carritoActualizado) {
     document.body.appendChild(carritoContainerDiv);
     console.log(carrito.length);
 
+
     if (carrito.length === 0) {
       carritoContainerDiv.classList.remove('carrito-container-active');
       document.body.removeChild(carritoContainerDiv);
       return;
     }
     carritoItemList.addEventListener('click', eliminarDelCarrito); //Aca se crea el evento click cada vez que se crea el boton eliminar, se le pasa el evento por parametro para poder tener en tiempo real a lo que se le dio click
+  
   });
+   setTimeout(() => {
+        alerta.remove();
+    }, 3000);
 }
 
 //Funcion Eliminar S>ervicio del Carrito
@@ -512,7 +514,6 @@ function mostrarError(mensaje) {
         alerta.remove();
     }, 3000);
 }
-
 function mostrarMensaje(mensaje) {
     const alerta = document.createElement('p');
     alerta.textContent = mensaje;
@@ -523,6 +524,7 @@ function mostrarMensaje(mensaje) {
         alerta.remove();
     }, 3000);
 }
+
 
 
 // Eventos de los Inputs...
@@ -542,5 +544,10 @@ function leerTexto(e) {
    }
 
 
-
+Swal.fire(
+        'Bienvenido!',
+        'A continuacion envianos tus datos!',
+        'success'
+)
+      
      
